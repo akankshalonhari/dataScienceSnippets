@@ -1,0 +1,73 @@
+import pandas as pd
+import numpy as np
+print ("NumPy version - " + np.version.version)
+print(" ")
+
+#Pandas Series
+list = ['a', 'b', 'c', 'd', 'e']
+series_1 = pd.Series(list)
+print(" Pandas Series \n", series_1)
+
+#Pandas series from array
+arr = np.array([10, 20, 30, 40, 50])
+series_2 = pd.Series(arr)
+print(" Pandas Series from array \n", series_2)
+
+#Series with indexing used from array above
+series_3 = pd.Series(arr, index=['First Element', 'Second Element', 'Third Element', 'Fourth Element' , 'Fifth Element'])
+print(" Pandas Series from array with assigned indexing \n", series_3)
+
+#Accessing element using index
+print(" Element at index 3 \n", series_3[3])
+print(" Elements from index 0-4, skip 2 \n", series_3[[0, 2, 4]])
+print(" Elements upto index 3 \n", series_3[:3])
+
+#Accessing element using index label
+print(" Index for label Third Element \n", series_3['Third Element'])
+print(" Indexes for listed labels \n", series_3[['Second Element', 'Fifth Element', 'Fourth Element']])
+
+print(" ")
+
+#Pandas DataFrame
+#Creating lists of lists
+pet_info = [['Bob', 10, 'Dog'], ['Lucy', 4, 'Cat'], ['Tom', 8, 'Fish']]
+print(" List of lists \n ", pet_info)
+
+pet_df = pd.DataFrame(pet_info, columns=['Name', 'Age', 'Type'], index=['A', 'B', 'C'])
+print("\n DataFrame from list of lists \n ", pet_df)
+
+print("\n Getting column by label \n", pet_df['Name'])
+print("\n Getting data-type of variable \n", type(pet_df))
+print("\n Getting data-types of each cols \n", pet_df.dtypes)
+
+print("\n Getting col 0 with position based indexing \n", pet_df.iloc[0])
+print("\n Getting col B with label based indexing \n", pet_df.loc['B'])
+
+pet_df
+
+
+#External Data sets
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+column_names = iris.feature_names
+print("\n\n Column Names from Iris data set ", column_names)
+print(" Length of data set ", len(data))
+
+#Slicing
+print(" Slicing first 5 rows from start \n", data[:5])
+print(" Slicing rows 2:6 from data set \n", data[2:6])
+print(" Slicing first 5 rows from start with intervals of 2 \n", data[0:6:2])
+
+#Convert array to Pandas DataFrame
+df = pd.DataFrame(data, columns=column_names)
+df
+
+print(" \n Slicing first 5 rows from head in DF \n ", df.head(5))
+print(" \n Slicing tail rows in DF \n ", df.tail())
+print(" \n Describing DF \n ", df.describe())
+print(" \n DF Info \n ", df.info)
+print(" \n Slicing rows after 140th row to end \n ", df.loc[140:])
+print(" \n DF Mode all rows \n ", df.mode())
+print(" \n DF Mean all rows \n ", df.mean())
+print(" \n DF Mean for a column \n ", df['petal length (cm)'].mean())
