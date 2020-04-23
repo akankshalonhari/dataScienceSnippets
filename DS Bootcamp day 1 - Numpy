@@ -1,0 +1,178 @@
+import pandas as pd
+import numpy as np
+print ("NumPy version - " + np.version.version)
+print(" ")
+
+#Data types in python
+print(" Int - 4 - data-type " + str(type(4)))
+print(" Float - 4.0 - data-type " + str(type(4.0)))
+print(" Str - 'Hello' - data-type " + str(type('Hello')))
+print(" Str - '1234' - data-type " + str(type('1234')))
+import datetime
+datetime_eg = datetime.datetime.now()
+print(" Datetime example " + str(datetime_eg))
+print(" Class type of datetime " + str(type(datetime_eg)))
+print(" ")
+
+#creating arrays
+array1 = np.array([1,2, 3, 4, 5]);
+print(" Array1 - " + str(array1))
+array2 = np.array(['a', 'b', 'c', 'd', 'e'])
+print(" Array2 - " + str(array2))
+print(" ")
+
+#creating lists and converting them to numpy arrays
+list1 = [11, 22, 33, 44, 55]
+arr1 = np.array(list1)
+print(" List1 - " + str(arr1))
+list2 = ["one", "two", "three"]
+arr2 = np.array(list2)
+print(" List2 - " + str(arr2))
+
+unevenlist = [1, [22, 33], 'Test']
+print(" List3 - " + str(unevenlist))
+print(" ")
+
+
+
+#array to list
+listOfLists = [[2, 3, 4], [5, 6, 7]]
+print(" List of Lists " + str(listOfLists))
+arr3 = np.array(listOfLists)
+print(" 2D Array")
+print(arr3)
+list3= arr3.tolist()
+print(" Array to list "+ str(list3))
+
+arr4 = np.zeros((2,3))
+print(" 2D Zeros Array")
+print(arr4)
+list4 = arr4.tolist()
+print(" Array to list " + str(list4))
+print(" ")
+
+#class type and data type of array
+print(" Class type of numbers array " + str(type(array1)))
+print(" Data type of numbers array " + str(array1.dtype))
+print(" Class type of letters array " + str(type(array2)))
+print(" Data type of letters array " + str(array2.dtype))
+print(" ")
+
+#Shape of array (length, width, third dimension)
+print(" Shape of array " + str(array1.shape))
+
+#Range function - num1 - inclusive, num2 - exclusive
+plain_range = range(10,21)
+print(" Range function " + str(list(plain_range)))
+
+#Interval function - range with gap specified
+interval_range = range(0, 15, 2)
+print(" Interval function " + str(list(interval_range)))
+
+#Reverse range
+reverse_range = range(15, 0, -2)
+print(" Reverse range function " + str(list(reverse_range)))
+print(" ")
+
+#Matrices to numpy array
+nummatrix = [list(range(0, 11)), list(range(11, 21, 1))]
+print(nummatrix)
+print(" Class type of nummatrix " + str(type(nummatrix)))
+numarray = np.array(nummatrix)
+print(" Numpy array from 2D matrix " + str(numarray))
+print(" Class type of numarray " + str(type(numarray)))
+print(" ")
+
+#Numpy arrays to Pandas DataFrame (tabular display)
+df_from_arr = pd.DataFrame(arr3)
+print(" Dataframe from numpy array ")
+print(df_from_arr)
+
+#Indexing and finding range in array based on indexes
+arr_1d = np.array(['a', 'b', 'c', 'd', 'e', 'f']) 
+print(" Element at index 2 " , arr_1d[2])
+print(" Elements in range 2:4 ", arr_1d[2:5]) #a:b - includes a and excludes b
+print(" ")
+
+#Slicing
+arr_2d = np.array([[1, 2, 3, 4, 5], [11, 22, 33, 44, 55], [111, 222, 333, 444, 555], [1111, 2222, 3333, 4444, 5555]])
+print(arr_2d)
+arr_copy = arr_2d.copy()
+slice_row = arr_copy[1:2, :] # row-slicing example
+print(' Row Slicing : Sliced array to get row with index 1 on [1:2, :]: \n ', slice_row)
+slice_row[:, :] = 10
+print(' Overwriting the sliced row ', slice_row)
+
+slice_col = arr_copy[:, 1:2] #col-slicing example
+print(' Col Slicing : Sliced array to get col with index 1 on [:, 1:2]: \n ', slice_col)
+
+slice_col[slice_col>11]
+print(' Elements above 11 ')
+print(slice_col)
+
+slice_col[slice_col % 2 == 1 ] += 1
+print(' Elements add 1 to odd numbers ')
+print(slice_col)
+print(" ")
+
+#Arithmetic Operations
+#Addition
+arr_x = np.array([[10, 20, 30],[40, 50, 60]])
+arr_y = np.array([[11, 21, 31], [41, 51, 61]])
+print(" Direct Addition \n ", arr_x + arr_y)
+print(" Numpy Addition \n ", np.add(arr_x, arr_y))
+
+#Subtraction
+print(" Direct Subtraction \n ", arr_x - arr_y)
+print(" Numpy Subtraction \n ", np.subtract(arr_x, arr_y))
+
+#Multiplication
+print(" Direct Multiplication \n ", arr_x * arr_y)
+print(" Numpy Multiplication \n ", np.multiply(arr_x, arr_y))
+
+#Division
+print(" Direct Division \n ", arr_y / arr_x)
+print(" Numpy Division \n ", np.divide(arr_y, arr_x))
+
+#Square root
+print(" Numpy SqRt \n", np.sqrt(arr_x))
+
+#Exponent - (e**x)
+print(" Numpy exponent \n ", np.exp(arr_x))
+
+#Power 
+print(" Numpy power \n", np.power(arr_x, 3))
+
+print(" ")
+
+#Statistical methods
+#Creating random MxN matrix
+random_matrix = np.random.randn(2, 3)
+print(" Random Matrix \n ", random_matrix)
+
+#Mean of all elements
+print(" Mean of all elements \n", random_matrix.mean())
+#Mean for all rows
+print(" Mean of all rows \n", random_matrix.mean(axis=1))
+#Mean for all cols
+print(" Mean for all cols \n", random_matrix.mean(axis=0))
+
+#Median of all elements
+print(" Median of all elements \n", np.median(random_matrix))
+#Median for all rows
+print(" Median of all rows \n", np.median(random_matrix, axis=1))
+#Median for all cols
+print(" Median for all cols \n", np.median(random_matrix, axis=0))
+
+
+#Sum of all elements
+print(" Sum of all elements \n", np.sum(random_matrix))
+#Sum for all rows
+print(" Sum of all rows \n", np.sum(random_matrix, axis=1))
+#Sum for all cols
+print(" Sum for all cols \n", np.sum(random_matrix, axis=0))
+
+
+#Read, Write to Disc
+np.savetxt('array.txt', X=arr_x, delimiter=',')
+np.loadtxt('array.txt', delimiter=',')
